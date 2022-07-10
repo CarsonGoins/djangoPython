@@ -17,8 +17,9 @@ class Collection(models.Model):
 class Product(models.Model):
     # sku = models.CharField(max_length=10, primary_key=True)
     title = models.CharField(max_length=255)
+    slug = models.SlugField()
     description = models.TextField()
-    price = models.DecimalField(max_digits=6, decimal_places=2)
+    unit_price = models.DecimalField(max_digits=6, decimal_places=2)
     inventory = models.IntegerField()
     last_update = models.DateTimeField(auto_now=True)
     collection = models.ForeignKey(
@@ -43,6 +44,7 @@ class Customer(models.Model):
     phone = models.IntegerField()
     birth_date = models.DateField(null=True)
     membership = models.CharField(max_length=20, choices=MEMBERSHIP_CHOICES)
+
 
 class Order(models.Model):
     PAYMENT_PENDING = 'P'
@@ -72,6 +74,7 @@ class OrderItem(models.Model):
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)
 
 class Address(models.Model):
+    zip = models.CharField(max_length=255)
     street = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     #one-one relationship
