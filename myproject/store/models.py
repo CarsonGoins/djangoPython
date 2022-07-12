@@ -62,6 +62,7 @@ class Order(models.Model):
     customer = models.ForeignKey(
         Customer, on_delete=models.PROTECT
     )
+    #orderitem_set - Django naming convention fo dependency
     
 class OrderItem(models.Model):
     order = models.ForeignKey(
